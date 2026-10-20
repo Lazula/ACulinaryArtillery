@@ -4,6 +4,7 @@ using System.Reflection;
 using Vintagestory.API.Client;
 using Vintagestory.API.Common;
 using Vintagestory.Client.NoObf;
+using Vintagestory.GameContent;
 
 namespace ACulinaryArtillery
 {
@@ -20,6 +21,7 @@ namespace ACulinaryArtillery
             api.RegisterBlockClass("BlockBottle", typeof(BlockBottle));
             api.RegisterBlockClass("BlockSpile", typeof(BlockSpile));
             api.RegisterBlockClass("BlockSaucepan", typeof(BlockSaucepan));
+            api.RegisterBlockClass("BlockExpandedCheese", typeof(BlockExpandedCheese));
 
             api.RegisterBlockEntityClass("MeatHooks", typeof(BlockEntityMeatHooks));
             api.RegisterBlockEntityClass("BottleRack", typeof(BlockEntityBottleRack));
@@ -27,11 +29,13 @@ namespace ACulinaryArtillery
             api.RegisterBlockEntityClass("Spile", typeof(BlockEntitySpile));
             api.RegisterBlockEntityClass("Saucepan", typeof(BlockEntitySaucepan));
             api.RegisterBlockEntityClass("ExpandedOven", typeof(BlockEntityExpandedOven));
+            api.RegisterBlockEntityClass("ExpandedCheese", typeof(BlockEntityExpandedCheese));
 
             api.RegisterItemClass("ExpandedRawFood", typeof(ItemExpandedRawFood));
             api.RegisterItemClass("ExpandedFood", typeof(ItemExpandedFood));
             api.RegisterItemClass("ExpandedLiquid", typeof(ItemExpandedLiquid));
             api.RegisterItemClass("ExpandedDough", typeof(ItemExpandedDough));
+            api.RegisterItemClass("ExpandedCheese", typeof(ItemExpandedCheese));
 
             api.RegisterCollectibleBehaviorClass("EggCrack", typeof(CollectibleBehaviorEggCrack));
 

@@ -10,6 +10,13 @@
 - New, larger spile mold shape
 - Kneading handbook page fixed
 
+~1.22_v2.0.0-dev.29~
+- Feature: Added a more flexible ExpandedCheese class. Allows for configuration of sliceable objects. Includes support for:
+  - Shearing to any variant, with the option for additional outputs
+  - Custom outputs when slicing
+  - Custom ripening output under blue cheese conditions
+  - Arbitrary slice counts
+
 ~1.22_v2.0.0-dev.28~
 - Hydrate or Diedrate compatiblity fixed (thanks to InsanityGod!) 
 - Fixed: Bottle and meat racks did not display held items (thanks to Lazula!)
