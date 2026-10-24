@@ -13,6 +13,7 @@ using Vintagestory.API.Util;
 using Vintagestory.GameContent;
 using System.Runtime.CompilerServices;
 using System.Reflection.Emit;
+using Vintagestory.API.Datastructures;
 
 namespace ACulinaryArtillery
 {
@@ -129,6 +130,59 @@ namespace ACulinaryArtillery
         }
     }
 
+    [HarmonyPatch(typeof(ItemSlotCreative))]
+    public static class ItemSlotCreativePatches
+    {
+        [HarmonyPostfix]
+        [HarmonyPatch(nameof(ItemSlotCreative.TakeOut))]
+        public static void TakeOutPostfix(ItemSlotCreative __instance, ItemStack __result, int quantity)
+        {
+            float[] sat = new float[6];
+            if (__result.Collectible is ItemExpandedRawFood erf)
+            {
+                string[]? addIngs = (__result.Attributes["madeWith"] as StringArrayAttribute)?.value;
+                if (addIngs != null)
+                {
+                    foreach (string ingredient in addIngs)
+                    {
+                        CollectibleObject? obj = __instance.Inventory.Api.World.GetItem(ingredient);
+                        obj ??= __instance.Inventory.Api.World.GetBlock(ingredient);
+
+                        if (obj != null)
+                        {
+                            erf.GetNutrientsFromIngredient(ref sat, obj, quantity);
+                        }
+                    }
+                }
+                __result.Attributes["expandedSats"] = new FloatArrayAttribute([.. sat]);
+            }
+        }
+
+        [HarmonyPostfix]
+        [HarmonyPatch(nameof(ItemSlotCreative.TakeOutWhole))]
+        public static void TakeOutWholePostfix(ItemSlotCreative __instance, ItemStack __result)
+        {
+            float[] sat = new float[6];
+            if (__result.Collectible is ItemExpandedRawFood erf)
+            {
+                string[]? addIngs = (__result.Attributes["madeWith"] as StringArrayAttribute)?.value;
+                if (addIngs != null)
+                {
+                    foreach (string ingredient in addIngs)
+                    {
+                        CollectibleObject? obj = __instance.Inventory.Api.World.GetItem(ingredient);
+                        obj ??= __instance.Inventory.Api.World.GetBlock(ingredient);
+
+                        if (obj != null)
+                        {
+                            erf.GetNutrientsFromIngredient(ref sat, obj, __result.StackSize);
+                        }
+                    }
+                }
+                __result.Attributes["expandedSats"] = new FloatArrayAttribute([.. sat]);
+            }
+        }
+    }
 
     [HarmonyPatch(typeof(BlockPie))]
     public static class BlockPiePatches

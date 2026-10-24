@@ -10,6 +10,10 @@
 - New, larger spile mold shape
 - Kneading handbook page fixed
 
+~1.22_v2.0.0-dev.29~
+- Fixed: Crash when ItemExpandedRawFood couldn't find shapes for additional ingredients
+- Feature: Extra nutrients are now added when creative inventory items have the madeWith attribute
+
 ~1.22_v2.0.0-dev.28~
 - Hydrate or Diedrate compatiblity fixed (thanks to InsanityGod!) 
 - Fixed: Bottle and meat racks did not display held items (thanks to Lazula!)
