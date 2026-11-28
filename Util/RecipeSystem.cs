@@ -417,14 +417,6 @@ namespace ACulinaryArtillery
                 : name = Lang.Get($"meal-ingredient-{recipeCode}-insturmental-generic-{genericName}");
         }
 
-        public void AddMultiIngredientInstrumental(ItemStack stack, string recipeCode, string genericName, ref string? name)
-        {
-            name = name == null
-                ? name = ingredientName(stack, EnumIngredientNameType.InsturmentalCase)
-                : name = Lang.Get($"meal-ingredient-{recipeCode}-insturmental-generic-{genericName}");
-        }
-
-
         public static Vintagestory.API.Datastructures.OrderedDictionary<ItemStack, CookingRecipeIngredient> GetIngredientsFromRecipe(CookingRecipe recipe, ItemStack[] stacks)
         {
             Vintagestory.API.Datastructures.OrderedDictionary<ItemStack, CookingRecipeIngredient> ingredientsByStack = [];
